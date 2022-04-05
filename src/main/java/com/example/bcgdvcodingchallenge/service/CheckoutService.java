@@ -27,26 +27,19 @@ public class CheckoutService {
             counter.put(watchId, counter.getOrDefault(watchId, 0) + 1);
         }
 
-        int price = 0;
+        int totalPrice = 0;
         for (Map.Entry<String, Integer> watchCounter : counter.entrySet()) {
             String watchId = watchCounter.getKey();
             Integer count = watchCounter.getValue();
 
             if (catalogue.getWatchMap().containsKey(watchId)) {
                 Watch watch = catalogue.getWatchMap().get(watchId);
-                if (watch.getDiscount() != null) {
-                    Integer discounts = count / watch.getDiscount().getAmount();
-
-                    price += discounts * watch.getDiscount().getPriceForAmount();
-                    price += (count % watch.getDiscount().getAmount()) * watch.getUnitPrice();
-                } else {
-                    price += count * watch.getUnitPrice();
-                }
+                totalPrice += watch.countPrice(count);
             } else {
                 throw new WatchNotFoundException("Watch Id '" + watchId + "' was not found in the catalog.");
             }
         }
 
-        return price;
+        return totalPrice;
     }
 }

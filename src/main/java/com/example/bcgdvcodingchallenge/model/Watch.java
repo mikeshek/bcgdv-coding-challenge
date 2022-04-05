@@ -1,10 +1,12 @@
 package com.example.bcgdvcodingchallenge.model;
 
-import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
-@Builder
-public class Watch {
+@Data
+@SuperBuilder
+public class Watch implements Priceable {
 
     String id;
     String name;
@@ -12,6 +14,8 @@ public class Watch {
     @Getter
     Integer unitPrice;
 
-    @Getter
-    Discount discount;
+    @Override
+    public int countPrice(int amount) {
+        return amount * unitPrice;
+    }
 }

@@ -32,7 +32,7 @@ public class CheckoutController {
             price = checkoutService.checkout(request);
         } catch (WatchNotFoundException e) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, e.getMessage(), e);
+                    HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
 
         return new CheckoutResponse(price);

@@ -3,6 +3,7 @@ package com.example.bcgdvcodingchallenge.service;
 import com.example.bcgdvcodingchallenge.model.Catalogue;
 import com.example.bcgdvcodingchallenge.model.Discount;
 import com.example.bcgdvcodingchallenge.model.Watch;
+import com.example.bcgdvcodingchallenge.model.WatchWithDiscount;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -18,7 +19,7 @@ public class CatalogueService {
         Catalogue catalogue = new Catalogue(new HashMap<>());
 
         catalogue.getWatchMap().put("001",
-                Watch.builder()
+                WatchWithDiscount.builder()
                         .id("001")
                         .name("Rolex")
                         .unitPrice(100)
@@ -26,7 +27,7 @@ public class CatalogueService {
                         .build());
 
         catalogue.getWatchMap().put("002",
-                Watch.builder()
+                WatchWithDiscount.builder()
                         .id("002")
                         .name("Michael Kors")
                         .unitPrice(80)
